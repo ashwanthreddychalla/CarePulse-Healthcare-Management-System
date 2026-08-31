@@ -10,6 +10,18 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
 
   if (patient) redirect(`/patients/${userId}/new-appointment`);
 
+  if (!user) {
+    return (
+      <div className="flex h-screen max-h-screen items-center justify-center">
+        <div className="text-center">
+          <h1 className="header">User not found</h1>
+          <p className="text-dark-700">Could not find user with ID: {userId}</p>
+          <p className="text-dark-600 text-sm mt-2">This may happen if Appwrite is not configured.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">

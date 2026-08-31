@@ -7,7 +7,13 @@ import { DataTable } from "@/components/table/DataTable";
 import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 
 const AdminPage = async () => {
-  const appointments = await getRecentAppointmentList();
+  const appointments = await getRecentAppointmentList() ?? {
+    totalCount: 0,
+    scheduledCount: 0,
+    pendingCount: 0,
+    cancelledCount: 0,
+    documents: [],
+  };
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
